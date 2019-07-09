@@ -1,5 +1,23 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10%;
+}
+
+.Search {
+  flex: 3;
+  max-width: 100%;
+}
+
+.Checkout {
+  flex: 1;
+  height: 100px;
+  padding: 1em;
+}
+
+.icon {
+  max-width: 1.4em;
 }
 
 .App-logo {
