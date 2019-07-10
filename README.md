@@ -1,9 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Start API Backend
+
+### Clone `https://github.com/jonesxv/collective-api`
+### `cd collective-api`
+### `npm start`
+
 ## Available Scripts
 
 In the project directory, you can run:
-
+### `cd react-bookstore`
 ### `npm start`
 
 Runs the app in the development mode.<br>
