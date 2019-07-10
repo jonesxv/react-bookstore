@@ -106,7 +106,7 @@ class Home extends React.Component {
       <div className="App">
         <Search books={this.state.books} addBook={this.addToCart} updateSearch={this.updateSearch} search={this.state.search} filtered={this.state.booksFiltered} admin={false} />
         <Checkout cart={this.state.cart} removeBook={this.removeFromCart} />
-        <ToastContainer />
+        <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
       </div>
     );
   }

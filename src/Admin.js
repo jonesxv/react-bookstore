@@ -1,5 +1,7 @@
 import React from 'react'
 import Search from './Search';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Admin extends React.Component {
 
@@ -8,6 +10,15 @@ class Admin extends React.Component {
     searchBooks: {},
     search: '',
     booksFiltered: {},
+  }
+
+  notify = (title, action) => {
+    toast(`${title} was ${action}.`, {
+      autoClose: 2000,
+      className: 'black-background',
+      bodyClassName: "grow-font-size",
+      progressClassName: 'fancy-progress-bar'
+    });
   }
 
   removeBook = bid => {
@@ -22,6 +33,7 @@ class Admin extends React.Component {
     })
     .then(res => { res.json()})
     .then(json => {
+      this.notify(this.state.books[bid].title, 'removed')
       this.componentDidMount()
     })
   }
@@ -71,6 +83,7 @@ class Admin extends React.Component {
     return (
       <div className="App">
         <Search books={this.state.books} addBook={this.removeBook} updateSearch={this.updateSearch} search={this.state.search} filtered={this.state.booksFiltered} admin={true} />
+        <ToastContainer position={toast.POSITION.TOP_RIGHT} />
       </div>
     );
   }
