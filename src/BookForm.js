@@ -1,6 +1,10 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom';
 
 class BookForm extends React.Component {
+  state = {
+    redirect: false
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +18,6 @@ class BookForm extends React.Component {
       price: parseInt(e.target.price.value)
     }
 
-    console.log(book)
-
     fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -27,10 +29,16 @@ class BookForm extends React.Component {
     .then(res => { res.json()})
     .then(json => {
       console.log(json)
+      this.setState({redirect: true})
     })
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/admin"/>
+    } else {
+      
+    }
     return (
       <div class="book-form">
         <form class="col s12" onSubmit={e => this.handleSubmit(e)}>
