@@ -6,6 +6,7 @@ const App = () => (
   <div>
     <Nav />
     <Main />
+    <div id="toast"></div>
   </div>
 )
 

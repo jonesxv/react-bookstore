@@ -1,5 +1,6 @@
 import React from 'react';
-// import logo from './logo.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Search from './Search';
 import Checkout from './Checkout';
@@ -12,6 +13,16 @@ class Home extends React.Component {
     cart: {},
     search: '',
     booksFiltered: {},
+    rendered: true
+  }
+
+  notify = (title, action) => {
+    toast(`${title} was ${action}.`, {
+      autoClose: 2000,
+      className: 'black-background',
+      bodyClassName: "grow-font-size",
+      progressClassName: 'fancy-progress-bar'
+    });
   }
 
   addToCart = bid => {
@@ -26,6 +37,7 @@ class Home extends React.Component {
     })
     .then(res => { res.json()})
     .then(json => {
+      this.notify(this.state.books[bid].title, 'added to cart')
       this.componentDidMount();
     })
   }
@@ -64,6 +76,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({rendered: false})
     fetch('http://localhost:8082/api/books')
       .then(res => res.json())
       .then(json => {
@@ -81,17 +94,19 @@ class Home extends React.Component {
           return { 
             cart: cart,
             books: {...json},
-            searchBooks: filtered
+            searchBooks: filtered,
+            rendered: true
           }
         })
       })
   }
 
-  render() {
+  render() { 
     return (
       <div className="App">
         <Search books={this.state.books} addBook={this.addToCart} updateSearch={this.updateSearch} search={this.state.search} filtered={this.state.booksFiltered} admin={false} />
         <Checkout cart={this.state.cart} removeBook={this.removeFromCart} />
+        <ToastContainer />
       </div>
     );
   }

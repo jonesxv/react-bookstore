@@ -29,7 +29,7 @@ class Search extends React.Component {
       bookList = Object.keys(this.props.filtered).map(key => {
         const books = this.props.books;
         return (
-          <div key={`card${key}`} className="col s6">
+          <div key={`card${key}`} className="col s12">
             <div className="card">
               <div className="card-image">
                 <a targer="blank" href={books[key].website}><img alt="book" src={`https://source.unsplash.com/350x200/?${books[key].title}`} /></a>
@@ -48,20 +48,15 @@ class Search extends React.Component {
     }
 
     return (
-      <div className="Search">
+      <div className="Search">  
         <form>
-
           <input onChange={e => this.props.updateSearch(e.target.value)} type="text" name="search" placeholder="Search..."></input>
-        </form>
-
-
-         
+        </form> 
         <div className="row">
           <div className="col s12">
             {bookList}
           </div>          
         </div>
-        
       </div>
     );
   }
