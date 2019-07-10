@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom'
 const Nav = () => (
   <header>
     <nav>
-      <ul>
+      <ul className="container">
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/admin'>Admin</Link></li>
+        <li><Link to='/add'>Add Book</Link></li>
       </ul>
     </nav>
   </header>

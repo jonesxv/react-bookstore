@@ -27,8 +27,22 @@ class Admin extends React.Component {
   //   })
   // }
 
-  removeBook = id => {
-
+  removeBook = bid => {
+    const id = this.state.books[bid].id
+    const url = `http://localhost:8082/api/books/${id}`
+    console.log(url)
+    fetch(url, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => { res.json()})
+    .then(json => {
+      console.log(this)
+      this.componentDidMount()
+    })
   }
 
   updateSearch = input => {

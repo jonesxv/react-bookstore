@@ -30,9 +30,9 @@ class Checkout extends React.Component {
 
             <tbody>
               {cartList}
-              <p>Total: ${total}</p>
             </tbody>
           </table>
+          <p>Total: ${total}</p>
       </div>
     );
   }

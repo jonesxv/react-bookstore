@@ -14,19 +14,35 @@ class Home extends React.Component {
     booksFiltered: {},
   }
 
-  addToCart = id => {
-    this.setState(prevState => {
-      const cart = {...prevState.cart}
-      cart[id] = this.state.books[id];
-      return { cart: {...cart} }
+  addToCart = bid => {
+    const id = this.state.books[bid].id
+    const url = `http://localhost:8082/api/books/cart/add/${id}`
+    fetch(url, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => { res.json()})
+    .then(json => {
+      this.componentDidMount();
     })
   }
 
-  removeFromCart = id => {
-    this.setState(prevState => {
-      const cart = {...prevState.cart}
-      delete cart[id];
-      return { cart: {...cart} }
+  removeFromCart = bid => {
+    const id = this.state.books[bid].id
+    const url = `http://localhost:8082/api/books/cart/remove/${id}`
+    fetch(url, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => { res.json()})
+    .then(json => {
+      this.componentDidMount();
     })
   }
 
