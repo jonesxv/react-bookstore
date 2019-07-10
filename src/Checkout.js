@@ -7,7 +7,7 @@ class Checkout extends React.Component {
     const cartList = Object.keys(this.props.cart).map(key => {
       const cart = this.props.cart;
       return (
-        <tr key="key">
+        <tr key={key}>
           <td>{cart[key].title}</td>
           <td><img onClick={() => this.props.removeBook(key)} alt="del" className="icon" src={del}></img></td>
         </tr>

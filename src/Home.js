@@ -78,7 +78,6 @@ class Home extends React.Component {
             filtered[key].title = filtered[key].title.toLowerCase()
             filtered[key].author = filtered[key].author.toLowerCase()
           })
-          console.log(json)
           return { 
             cart: cart,
             books: {...json},

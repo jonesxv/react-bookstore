@@ -28,7 +28,6 @@ class BookForm extends React.Component {
     })
     .then(res => { res.json()})
     .then(json => {
-      console.log(json)
       this.setState({redirect: true})
     })
   }

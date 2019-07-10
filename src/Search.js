@@ -1,14 +1,7 @@
 import React from 'react';
-import del from './del.png';
-import plus from './plus.png';
 
 
 class Search extends React.Component {
-
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(e.target.childNodes)
-  }
 
   render() {
     let bookList;
@@ -20,7 +13,7 @@ class Search extends React.Component {
             <div className="card">
               <div className="card-image">
                 <a targer="blank" href={books[key].website}><img alt="book" src={`https://source.unsplash.com/350x200/?${books[key].title}`} /></a>
-                <a onClick={() => this.props.addBook(key)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">{this.props.admin ? 'delete' : 'add'}</i></a>
+                <button onClick={() => this.props.addBook(key)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">{this.props.admin ? 'delete' : 'add'}</i></button>
               </div>
               <div className="card-content">
                 <span className="card-title">{books[key].title}</span>
@@ -36,11 +29,11 @@ class Search extends React.Component {
       bookList = Object.keys(this.props.filtered).map(key => {
         const books = this.props.books;
         return (
-          <div key={key} className="col s6">
+          <div key={`card${key}`} className="col s6">
             <div className="card">
               <div className="card-image">
                 <a targer="blank" href={books[key].website}><img alt="book" src={`https://source.unsplash.com/350x200/?${books[key].title}`} /></a>
-                <a onClick={() => this.props.addBook(key)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons delete">add</i></a>
+                <button onClick={() => this.props.addBook(key)} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons delete">add</i></button>
               </div>
               <div className="card-content">
                 <span className="card-title">{books[key].title}</span>
@@ -56,7 +49,7 @@ class Search extends React.Component {
 
     return (
       <div className="Search">
-        <form onSubmit={this.handleSubmit}>
+        <form>
 
           <input onChange={e => this.props.updateSearch(e.target.value)} type="text" name="search" placeholder="Search..."></input>
         </form>

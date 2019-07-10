@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Search from './Search';
 
 class Admin extends React.Component {
@@ -11,26 +10,9 @@ class Admin extends React.Component {
     booksFiltered: {},
   }
 
-  // addToCart = id => {
-  //   this.setState(prevState => {
-  //     const cart = {...prevState.cart}
-  //     cart[id] = this.state.books[id];
-  //     return { cart: {...cart} }
-  //   })
-  // }
-
-  // removeFromCart = id => {
-  //   this.setState(prevState => {
-  //     const cart = {...prevState.cart}
-  //     delete cart[id];
-  //     return { cart: {...cart} }
-  //   })
-  // }
-
   removeBook = bid => {
     const id = this.state.books[bid].id
     const url = `http://localhost:8082/api/books/${id}`
-    console.log(url)
     fetch(url, {
       method: 'DELETE',
       mode: 'cors',
@@ -40,7 +22,6 @@ class Admin extends React.Component {
     })
     .then(res => { res.json()})
     .then(json => {
-      console.log(this)
       this.componentDidMount()
     })
   }
@@ -77,7 +58,6 @@ class Admin extends React.Component {
             filtered[key].title = filtered[key].title.toLowerCase()
             filtered[key].author = filtered[key].author.toLowerCase()
           })
-          console.log(json)
           return { 
             cart: cart,
             books: {...json},
